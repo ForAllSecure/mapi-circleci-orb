@@ -17,8 +17,8 @@ jobs:
       - checkout
       # Run your orb's commands to validate them.
       - mapi/scan:
-        api-url: https://demo-api.mayhem4api.forallsecure.com/api/v3
-        api-spec: https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json
+          api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
+          api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
 workflows:
   test-deploy:
     jobs:
