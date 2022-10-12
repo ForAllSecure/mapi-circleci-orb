@@ -12,8 +12,7 @@ description: >
       mapi organization service-account create <your-org> <service-account-name>
     ```
 
-  3. Add your service account token with name `MAPI_TOKEN` on your repository's GitHub page at
-      `Settings` → `Secrets` → `New repository secret`
+  3. Add your service account token with name `MAPI_TOKEN` to your Circle CI project's Environment Variables.
 
 usage:
   version: 2.1
