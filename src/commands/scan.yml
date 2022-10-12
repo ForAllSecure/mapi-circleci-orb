@@ -18,11 +18,11 @@ parameters:
   zap-api-scan:
     type: string
     description: Include results from ZAP - API Scan. This run ZAP - API Scan and merge the results with your Mayhem for API results.
-    default: 'false'
+    default: "false"
   duration:
     type: string
     description: Scan duration
-    default: auto
+    default: "auto"
   # TODO: sarif + html
   # sarif-report:
   #   type: string
@@ -44,9 +44,11 @@ parameters:
   postman-api-key:
     type: env_var_name
     description: A postman api key to authenticate with Postman's API.
+    default: POSTMAN_API_KEY
   postman-environment-id:
     type: string
     description: A postman environment to use together with a postman collection.
+    default: ""
   # TODO: support run args
   # run-args:
   #   type: string
