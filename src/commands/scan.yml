@@ -30,12 +30,13 @@ parameters:
   # html-report:
   #   type: string
   #   description: HTML output path. You can artifact to GitHub using the 'actions/upload-artifact@v2' action
-  experimental-rewrite-plugin:
-    type: string
-    description: --experimental-rewrite-plugin option value
-  experimental-classify-plugin:
-    type: string
-    description: --experimental-classify-plugin option value
+  # TODO: rewrite + classify plgin
+  # rewrite-plugin:
+  #   type: string
+  #   description: --experimental-rewrite-plugin option value
+  # classify-plugin:
+  #   type: string
+  #   description: --experimental-classify-plugin option value
   github-token:
     type: env_var_name
     description: github token for posting feedback
