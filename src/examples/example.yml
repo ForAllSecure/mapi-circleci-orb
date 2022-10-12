@@ -1,9 +1,24 @@
 description: >
   Run Mayhem for API to check for vulnerabilities.
+  
+  Get a Mayhem for API token
+
+  1. [Sign up for Mayhem for API for free and install `mapi`](http://mayhem4api.forallsecure.com/signup)
+
+  2. Create a [service account token](https://mayhem4api.forallsecure.com/docs/ch01-03-organizations.html#service-accounts)
+      using the Mayhem for API CLI
+
+    ```
+      mapi organization service-account create <your-org> <service-account-name>
+    ```
+
+  3. Add your service account token with name `MAPI_TOKEN` on your repository's GitHub page at
+      `Settings` → `Secrets` → `New repository secret`
+
 usage:
   version: 2.1
   orbs:
-    mapi: forallsecure/mapi@1.2.3
+    mapi: forallsecure/mapi@1.0.0
   workflows:
     security:
       jobs:
