@@ -1,9 +1,9 @@
 #!/bin/bash
 docker run -it \
-  -e MAPI_TOKEN=${<< parameters.mapi-token >>} \
-  -e GITHUB_TOKEN=${<< parameters.github-token >>} \
-  -e POSTMAN_ENVIRONMENT=${<< parameters.postman-environment-id >>} \
-  -e POSTMAN_API_KEY=${<< parameters.postman-api-key >>} \
+  --env MAPI_TOKEN \
+  --env GITHUB_TOKEN \
+  --env POSTMAN_ENVIRONMENT \
+  --env POSTMAN_API_KEY \
   forallsecure/mapi:latest \
-  --url ${<<parameters.api-url >>} \
-  ${<< parameters.api-spec >>}
+  --url ${API_URL} \
+  ${API_SPEC}
