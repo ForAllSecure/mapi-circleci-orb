@@ -8,11 +8,9 @@ parameters:
   api-url:
     type: string
     description: URL pointing to your running API you started before calling this action (don't fuzz your production API!)
-    required: true
   api-spec:
     type: string
     description: Path to your Swagger 2.0 or OpenAPI 3.0 specification, or your Postman collection. Can be a URL or postman collection ID.
-    required: true
   target:
     type: string
     description: The organization-scoped name of your target, such as example/my-test-target. Auto-generated from your repository name if unspecified.
@@ -41,7 +39,6 @@ parameters:
   github-token:
     type: env_var_name
     description: github token for posting feedback
-    required: false
     default: GITHUB_TOKEN
   postman-api-key:
     type: env_var_name
