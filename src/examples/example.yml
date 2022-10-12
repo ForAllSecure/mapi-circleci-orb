@@ -1,6 +1,6 @@
 description: >
   Run Mayhem for API to check for vulnerabilities.
-  
+
   Get a Mayhem for API token
 
   1. [Sign up for Mayhem for API for free and install `mapi`](http://mayhem4api.forallsecure.com/signup)
