@@ -1,13 +1,11 @@
 version: 2.1
 
 description: >
-  Sample orb description
-# What will your orb allow users to accomplish?
-# Descriptions should be short, simple, and informative.
+  Probe your REST API with an infinite stream of test cases generated automatically from your OpenAPI specification or Postman collection.
 
 # This information will be displayed in the orb registry and is not mandatory.
 display:
-  home_url: "https://www.example.com/docs"
+  home_url: "https://mayhem4api.forallsecure.com/docs/"
   source_url: "https://github.com/ForAllSecure/mapi-circleci-orb"
 
 # If your orb requires other orbs, you can import them like this. Otherwise remove the "orbs" stanza.
