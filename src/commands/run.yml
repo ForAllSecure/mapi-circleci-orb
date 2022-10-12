@@ -1,0 +1,67 @@
+description: >
+  Automatically test your REST APIs with your OpenAPI specs and Postman collections
+parameters:
+  mapi-token:
+    type: env_var_name
+    description: Mayhem for API service account token
+    default: MAPI_TOKEN
+  api-url:
+    type: string
+    description: URL pointing to your running API you started before calling this action (don't fuzz your production API!)
+    required: true
+  api-spec:
+    type: string
+    description: Path to your Swagger 2.0 or OpenAPI 3.0 specification, or your Postman collection. Can be a URL or postman collection ID.
+    required: true
+  target:
+    type: string
+    description: The organization-scoped name of your target, such as example/my-test-target. Auto-generated from your repository name if unspecified.
+    default: CIRCLE_PROJECT_REPONAME
+  zap-api-scan:
+    type: string
+    description: Include results from ZAP - API Scan. This run ZAP - API Scan and merge the results with your Mayhem for API results.
+    default: 'false'
+  duration:
+    type: string
+    description: Scan duration
+    default: auto
+  # TODO: sarif + html
+  # sarif-report:
+  #   type: string
+  #   description: SARIF output path. You can upload it to GitHub using the 'github/codeql-action/upload-sarif@v1' action
+  # html-report:
+  #   type: string
+  #   description: HTML output path. You can artifact to GitHub using the 'actions/upload-artifact@v2' action
+  experimental-rewrite-plugin:
+    type: string
+    description: --experimental-rewrite-plugin option value
+  experimental-classify-plugin:
+    type: string
+    description: --experimental-classify-plugin option value
+  github-token:
+    type: env_var_name
+    description: github token for posting feedback
+    required: false
+    default: GITHUB_TOKEN
+  postman-api-key:
+    type: env_var_name
+    description: A postman api key to authenticate with Postman's API.
+  postman-environment-id:
+    type: string
+    description: A postman environment to use together with a postman collection.
+  # TODO: support run args
+  # run-args:
+  #   type: string
+  #   description: A list of additional arguments (separated by '\n') to include in the call to 'mapi run'. Run 'mapi run --help' for a complete list of arguments.
+steps:
+  - run:
+      name: Run Mayhem for API
+      command: |
+        docker run -it \
+          -e MAPI_TOKEN=<< parameters.mapi-token >> \
+          -e GITHUB_TOKEN=<< parameters.github-token >> \
+          -e POSTMAN_ENVIRONMENT=<< parameters.postman-environment-id >> \
+          -e POSTMAN_API_KEY=<< parameters.postman-api-key >> \
+          forallsecure/mapi:latest \
+          --url <<parameters.api-url >> \
+          << parameters.api-spec >>
