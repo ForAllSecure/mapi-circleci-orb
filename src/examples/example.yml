@@ -1,13 +1,13 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Run Mayhem for API to check for vulnerabilities.
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    mapi: forallsecure/mapi@1.2.3
   workflows:
-    use-my-orb:
+    security:
       jobs:
-        - <orb-name>/<job-name>
+        - mapi/scan:
+            mapi-token: $MAPI_TOKEN
+            api-url: http://localhost:8000
+            api-spec: your-openapi-spec-or-postman-collection.json
