@@ -5,5 +5,5 @@ docker run -it \
   --env POSTMAN_ENVIRONMENT \
   --env POSTMAN_API_KEY \
   forallsecure/mapi:latest \
-  --url ${API_URL} \
-  ${API_SPEC}
+  --url "${API_URL}" \
+  "${API_SPEC}"
