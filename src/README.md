@@ -1,8 +1,9 @@
-# Orb Source
+# Mayhem for API CircleCI Orb
 
-Orbs are shipped as individual `orb.yml` files, however, to make development easier, it is possible to author an orb in _unpacked_ form, which can be _packed_ with the CircleCI CLI and published.
+[![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](http://mayhem4api.forallsecure.com/signup)
 
-The default `.circleci/config.yml` file contains the configuration code needed to automatically pack, test, and deploy any changes made to the contents of the orb source in this directory.
+A CircleCI orb for using Mayhem for API to check for reliability,
+performance and security issues in your APIs.
 
 ## @orb.yml
 
