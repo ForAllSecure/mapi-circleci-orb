@@ -20,6 +20,7 @@ jobs:
           api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
           api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
           duration: "10sec"
+          zap-api-scan: true
 workflows:
   test-deploy:
     jobs:

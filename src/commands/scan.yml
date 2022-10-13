@@ -16,9 +16,9 @@ parameters:
     description: The organization-scoped name of your target, such as example/my-test-target. Auto-generated from your repository name if unspecified.
     default: ""
   zap-api-scan:
-    type: string
+    type: boolean
     description: Include results from ZAP - API Scan. This run ZAP - API Scan and merge the results with your Mayhem for API results.
-    default: "false"
+    default: false
   duration:
     type: string
     description: Scan duration
