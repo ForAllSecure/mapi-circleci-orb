@@ -20,7 +20,6 @@ jobs:
           api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
           api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
           duration: "10sec"
-          zap-api-scan: true
 workflows:
   test-deploy:
     jobs:
@@ -34,12 +33,7 @@ workflows:
           api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
           api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
           duration: "10sec"
-      # test mapi zap job
-      - mapi/zap:
-          context: orb-publishing
-          api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
-          api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
-          duration: "10sec"
+          zap-api-scan: true
       - orb-tools/pack:
           filters: *filters
       - orb-tools/publish:
