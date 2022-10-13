@@ -1,6 +1,9 @@
 #!/bin/bash
 
-printenv
+# The CircleCI orb can override the names of these environment variables
+export MAPI_TOKEN="${!MAPI_TOKEN_NAME}"
+export POSTMAN_API_KEY="${!POSTMAN_API_KEY_NAME}"
+export GITHUB_TOKEN="${!GITHUB_TOKEN_NAME}"
 
 MAPI="${MAPI_PATH}/mapi"
 

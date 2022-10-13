@@ -14,7 +14,7 @@ parameters:
   target:
     type: string
     description: The organization-scoped name of your target, such as example/my-test-target. Auto-generated from your repository name if unspecified.
-    default: CIRCLE_PROJECT_REPONAME
+    default: "$CIRCLE_PROJECT_REPONAME"
   zap-api-scan:
     type: string
     description: Include results from ZAP - API Scan. This run ZAP - API Scan and merge the results with your Mayhem for API results.
@@ -67,12 +67,12 @@ steps:
         API_URL: <<parameters.api-url>>
         API_SPEC: <<parameters.api-spec>>
         DURATION: <<parameters.duration>>
-        GITHUB_TOKEN: <<parameters.github-token>>
-        MAPI_TOKEN: <<parameters.mapi-token>>
+        GITHUB_TOKEN_NAME: <<parameters.github-token>>
+        MAPI_TOKEN_NAME: <<parameters.mapi-token>>
         MAPI_PATH: <<parameters.mapi-path>>
         MAPI_VERSION: <<parameters.mapi-version>>
         POSTMAN_ENVIRONMENT: <<parameters.postman-environment-id>>
-        POSTMAN_API_KEY: <<parameters.postman-api-key>>
+        POSTMAN_API_KEY_NAME: <<parameters.postman-api-key>>
         TARGET: <<parameters.target>>
         ZAP_API_SCAN: <<parameters.zap-api-scan>>
 

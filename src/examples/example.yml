@@ -25,6 +25,5 @@ usage:
             name: Start your API
             run: ./run_your_api.sh &
         - mapi/scan:
-            mapi-token: $MAPI_TOKEN
             api-url: http://localhost:8000
             api-spec: your-openapi-spec-or-postman-collection.json
