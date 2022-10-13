@@ -1,7 +1,7 @@
 description: >
   Run Mayhem for API to check for vulnerabilities.
 
-executor: docker
+executor: default
 
 parameters:
   mapi-token:
@@ -48,8 +48,6 @@ parameters:
     default: "latest"
 steps:
   - checkout
-  - setup_remote_docker:
-      version: 20.10.14
   - scan:
       api-url: <<parameters.api-url>>
       api-spec: <<parameters.api-spec>>

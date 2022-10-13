@@ -1,6 +1,5 @@
 description: >
   Run Mayhem for API and Zap to check for vulnerabilities.
-  Note that setup_remote_docker is required.
 usage:
   version: 2.1
   orbs:
