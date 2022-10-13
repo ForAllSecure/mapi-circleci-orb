@@ -62,6 +62,8 @@ parameters:
     description: The binary version of Mayhem for API to use
     default: "latest"
 steps:
+  - setup_remote_docker:
+      version: 20.10.14
   - run:
       environment:
         API_URL: <<parameters.api-url>>
