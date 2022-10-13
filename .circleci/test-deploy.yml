@@ -19,11 +19,13 @@ jobs:
       - mapi/scan:
           api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
           api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
+          duration: "10sec"
 workflows:
   test-deploy:
     jobs:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       - command-tests:
+          context: orb-publishing
           filters: *filters
       - orb-tools/pack:
           filters: *filters
