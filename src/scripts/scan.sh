@@ -1,5 +1,7 @@
 #!/bin/bash
 
+printenv
+
 MAPI="${MAPI_PATH}/mapi"
 
 mkdir -p "${MAPI_PATH}"
