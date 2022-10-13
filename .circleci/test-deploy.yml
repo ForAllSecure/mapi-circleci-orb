@@ -12,12 +12,9 @@ jobs:
   # You may want to add additional validation steps to ensure the commands are working as expected.
   command-tests:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2204:2022.07.1
     steps:
       - checkout
-      # Setup docker so zap can connect
-      - setup_remote_docker:
-          version: 20.10.14
       # Run your orb's commands to validate them.
       - mapi/scan:
           api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
