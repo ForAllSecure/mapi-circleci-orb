@@ -23,13 +23,10 @@ parameters:
     type: string
     description: Scan duration
     default: "auto"
-  # TODO: sarif + html
-  # sarif-report:
-  #   type: string
-  #   description: SARIF output path. You can upload it to GitHub using the 'github/codeql-action/upload-sarif@v1' action
-  # html-report:
-  #   type: string
-  #   description: HTML output path. You can artifact to GitHub using the 'actions/upload-artifact@v2' action
+  html-report:
+    type: string
+    description: HTML output path. Store the artifact using the `store_artifacts` step.
+    default: "${HOME}/mapi/report.html"
   # TODO: rewrite + classify plgin
   # rewrite-plugin:
   #   type: string
@@ -68,6 +65,7 @@ steps:
         API_SPEC: <<parameters.api-spec>>
         DURATION: <<parameters.duration>>
         GITHUB_TOKEN_NAME: <<parameters.github-token>>
+        HTML_REPORT: <<parameters.html-report>>
         MAPI_TOKEN_NAME: <<parameters.mapi-token>>
         MAPI_PATH: <<parameters.mapi-path>>
         MAPI_VERSION: <<parameters.mapi-version>>

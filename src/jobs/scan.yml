@@ -38,6 +38,10 @@ parameters:
     type: string
     description: A postman environment to use together with a postman collection.
     default: ""
+  html-report:
+    type: string
+    description: HTML output path. Store the artifact using the `store_artifacts` step.
+    default: "${HOME}/mapi/report.html"
   # TODO: support run args
   # run-args:
   #   type: string
@@ -64,3 +68,6 @@ steps:
       postman-environment-id: <<parameters.postman-environment-id>>
       mapi-path: <<parameters.mapi-path>>
       mapi-version: <<parameters.mapi-version>>
+      html-report: <<parameters.html-report>>
+  - store_artifacts:
+      path: <<parameters.html-report>>

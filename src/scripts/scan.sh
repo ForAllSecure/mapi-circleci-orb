@@ -12,13 +12,15 @@ MAPI="${MAPI_PATH}/mapi"
 
 params=()
 [[ $ZAP_API_SCAN == 1 ]] && params+=(--zap)
+[[ -n $HTML_REPORT ]] && params+=("--html") && params+=("${HTML_REPORT}") && mkdir -p "$(dirname "$HTML_REPORT")"
 
 echo "${params[@]}"
 
+# Create binary folder
 mkdir -p "${MAPI_PATH}"
 
-# Download executable
+# Download binary
 curl -Lo "${MAPI}" "https://mayhem4api.forallsecure.com/downloads/cli/${MAPI_VERSION}/linux-musl/mapi" \
   && chmod +x "${MAPI}"
 
-${MAPI} run "${params[@]}" --url "${API_URL}" "${TARGET}" "${DURATION}" "${API_SPEC}"
+${MAPI} run --url "${API_URL}" "${TARGET}" "${DURATION}" "${API_SPEC}" "${params[@]}" 
