@@ -1,0 +1,14 @@
+description: >
+  Run Mayhem for API and Zap to check for vulnerabilities.
+  Note that setup_remote_docker is required.
+usage:
+  version: 2.1
+  orbs:
+    mapi: forallsecure/mapi@1.0.0
+  workflows:
+    security:
+      jobs:
+        - mapi/zap:
+            api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
+            api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
+            duration: "10sec"

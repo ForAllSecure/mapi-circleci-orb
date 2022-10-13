@@ -15,6 +15,9 @@ jobs:
       - image: cimg/base:current
     steps:
       - checkout
+      # Setup docker so zap can connect
+      - setup_remote_docker:
+          version: 20.10.14
       # Run your orb's commands to validate them.
       - mapi/scan:
           api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
@@ -28,6 +31,18 @@ workflows:
       - command-tests:
           context: orb-publishing
           filters: *filters
+      # test mapi scan job
+      - mapi/scan:
+          context: orb-publishing
+          api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
+          api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
+          duration: "10sec"
+      # test mapi zap job
+      - mapi/zap:
+          context: orb-publishing
+          api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
+          api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
+          duration: "10sec"
       - orb-tools/pack:
           filters: *filters
       - orb-tools/publish:
@@ -37,6 +52,7 @@ workflows:
           requires:
             - orb-tools/pack
             - command-tests
+            - mapi/scan
           context: orb-publishing
           filters:
             branches:

@@ -1,0 +1,4 @@
+description: >
+  Execute Mayhem for API on docker.
+docker:
+  - image: cimg/base:current

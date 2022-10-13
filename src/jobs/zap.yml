@@ -1,5 +1,8 @@
 description: >
-  Automatically test your REST APIs with your OpenAPI specs and Postman collections
+  Run Mayhem for API to check for vulnerabilities.
+
+executor: docker
+
 parameters:
   mapi-token:
     type: env_var_name
@@ -15,28 +18,10 @@ parameters:
     type: string
     description: The organization-scoped name of your target, such as example/my-test-target. Auto-generated from your repository name if unspecified.
     default: ""
-  zap-api-scan:
-    type: boolean
-    description: Include results from ZAP - API Scan. This run ZAP - API Scan and merge the results with your Mayhem for API results.
-    default: false
   duration:
     type: string
     description: Scan duration
     default: "auto"
-  # TODO: sarif + html
-  # sarif-report:
-  #   type: string
-  #   description: SARIF output path. You can upload it to GitHub using the 'github/codeql-action/upload-sarif@v1' action
-  # html-report:
-  #   type: string
-  #   description: HTML output path. You can artifact to GitHub using the 'actions/upload-artifact@v2' action
-  # TODO: rewrite + classify plgin
-  # rewrite-plugin:
-  #   type: string
-  #   description: --experimental-rewrite-plugin option value
-  # classify-plugin:
-  #   type: string
-  #   description: --experimental-classify-plugin option value
   github-token:
     type: env_var_name
     description: github token for posting feedback
@@ -62,19 +47,18 @@ parameters:
     description: The binary version of Mayhem for API to use
     default: "latest"
 steps:
-  - run:
-      environment:
-        API_URL: <<parameters.api-url>>
-        API_SPEC: <<parameters.api-spec>>
-        DURATION: <<parameters.duration>>
-        GITHUB_TOKEN_NAME: <<parameters.github-token>>
-        MAPI_TOKEN_NAME: <<parameters.mapi-token>>
-        MAPI_PATH: <<parameters.mapi-path>>
-        MAPI_VERSION: <<parameters.mapi-version>>
-        POSTMAN_ENVIRONMENT: <<parameters.postman-environment-id>>
-        POSTMAN_API_KEY_NAME: <<parameters.postman-api-key>>
-        TARGET: <<parameters.target>>
-        ZAP_API_SCAN: <<parameters.zap-api-scan>>
-
-      name: Scan your API with Mayhem for API
-      command: <<include(scripts/scan.sh)>>
+  - checkout
+  - setup_remote_docker:
+      version: 20.10.14
+  - scan:
+      api-url: <<parameters.api-url>>
+      api-spec: <<parameters.api-spec>>
+      mapi-token: <<parameters.mapi-token>>
+      target: <<parameters.target>>
+      duration: <<parameters.duration>>
+      github-token: <<parameters.github-token>>
+      postman-api-key: <<parameters.postman-api-key>>
+      postman-environment-id: <<parameters.postman-environment-id>>
+      mapi-path: <<parameters.mapi-path>>
+      mapi-version: <<parameters.mapi-version>>
+      zap-api-scan: true
