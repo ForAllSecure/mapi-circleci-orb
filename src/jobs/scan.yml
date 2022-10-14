@@ -1,0 +1,97 @@
+description: >
+  Run Mayhem for API to check for vulnerabilities.
+
+executor: default
+
+parameters:
+  mapi-token:
+    type: env_var_name
+    description: Mayhem for API service account token
+    default: MAPI_TOKEN
+  api-url:
+    type: string
+    description: URL pointing to your running API you started before calling this action (don't fuzz your production API!)
+  api-spec:
+    type: string
+    description: Path to your Swagger 2.0 or OpenAPI 3.0 specification, or your Postman collection. Can be a URL or postman collection ID.
+  target:
+    type: string
+    description: The organization-scoped name of your target, such as example/my-test-target. Auto-generated from your repository name if unspecified.
+    default: ""
+  zap-api-scan:
+    type: boolean
+    description: Include results from ZAP - API Scan. This run ZAP - API Scan and merge the results with your Mayhem for API results.
+    default: false
+  duration:
+    type: string
+    description: Scan duration
+    default: "auto"
+  github-token:
+    type: env_var_name
+    description: github token for posting feedback
+    default: GITHUB_TOKEN
+  postman-api-key:
+    type: env_var_name
+    description: A postman api key to authenticate with Postman's API.
+    default: POSTMAN_API_KEY
+  postman-environment-id:
+    type: string
+    description: A postman environment to use together with a postman collection.
+    default: ""
+  junit-report:
+    type: string
+    description: junit output path.
+    default: "/tmp/mapi/junit.xml"
+  html-report:
+    type: string
+    description: HTML output path.
+    default: "/tmp/mapi/report.html"
+  sarif-report:
+    type: string
+    description: SARIF (Static Analysis Results Interchange Format) report output path. Store the artifact using the `store_artifacts` step.
+    default: ""
+  mapi-path:
+    type: string
+    description: The path to install the latest binary executable to.
+    default: "$HOME/bin"
+  mapi-version:
+    type: string
+    description: The binary version of Mayhem for API to use
+    default: "latest"
+  run-args:
+    type: string
+    description: A list of additional arguments (separated by '\n') to include in the call to 'mapi run'. Run 'mapi run --help' for a complete list of arguments.
+    default: ""
+steps:
+  - checkout
+  - scan:
+      api-spec: <<parameters.api-spec>>
+      api-url: <<parameters.api-url>>
+      duration: <<parameters.duration>>
+      github-token: <<parameters.github-token>>
+      html-report: <<parameters.html-report>>
+      junit-report: <<parameters.junit-report>>
+      mapi-path: <<parameters.mapi-path>>
+      mapi-token: <<parameters.mapi-token>>
+      mapi-version: <<parameters.mapi-version>>
+      postman-api-key: <<parameters.postman-api-key>>
+      postman-environment-id: <<parameters.postman-environment-id>>
+      run-args: <<parameters.run-args>>
+      sarif-report: <<parameters.sarif-report>>
+      target: <<parameters.target>>
+      zap-api-scan: <<parameters.zap-api-scan>>
+  - when:
+      condition: <<parameters.html-report>>
+      steps:
+        - store_artifacts:
+            path: <<parameters.html-report>>
+  - when:
+      condition: <<parameters.junit-report>>
+      steps:
+        - store_test_results:
+            path: <<parameters.junit-report>>
+  - when:
+      condition: <<parameters.sarif-report>>
+      steps:
+        - store_artifacts:
+            path: <<parameters.sarif-report>>

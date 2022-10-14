@@ -1,26 +1,23 @@
-# Orb Source
+# Mayhem for API CircleCI Orb
 
-Orbs are shipped as individual `orb.yml` files, however, to make development easier, it is possible to author an orb in _unpacked_ form, which can be _packed_ with the CircleCI CLI and published.
+[![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](http://mayhem4api.forallsecure.com/signup)
 
-The default `.circleci/config.yml` file contains the configuration code needed to automatically pack, test, and deploy any changes made to the contents of the orb source in this directory.
+A CircleCI orb for using Mayhem for API to check for reliability,
+performance and security issues in your APIs.
 
-## @orb.yml
+## About Mayhem for API
 
-This is the entry point for our orb "tree", which becomes our `orb.yml` file later.
+🧪 Modern App Testing: Mayhem for API is a dynamic testing tool that
+catches reliability, performance and security bugs before they hit
+production.
 
-Within the `@orb.yml` we generally specify 4 configuration keys
+🧑‍💻 For Developers, by developers: The engineers building
+software are the best equipped to fix bugs, including security bugs. As
+engineers ourselves, we're building tools that we wish existed to make
+our job easier!
 
-**Keys**
+🤖 Simple to Automate in CI: Tests belong in CI, running on every commit
+and PRs. We make it easy, and provide results right in your PRs where
+you want them. Adding Mayhem for API to a DevOps pipeline is easy.
 
-1. **version**
-    Specify version 2.1 for orb-compatible configuration `version: 2.1`
-2. **description**
-    Give your orb a description. Shown within the CLI and orb registry
-3. **display**
-    Specify the `home_url` referencing documentation or product URL, and `source_url` linking to the orb's source repository.
-4. **orbs**
-    (optional) Some orbs may depend on other orbs. Import them here.
-
-## See:
- - [Orb Author Intro](https://circleci.com/docs/2.0/orb-author-intro/#section=configuration)
- - [Reusable Configuration](https://circleci.com/docs/2.0/reusing-config)
+Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) today!
