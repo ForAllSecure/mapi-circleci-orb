@@ -41,11 +41,11 @@ parameters:
   junit-report:
     type: string
     description: junit output path.
-    default: "${HOME}/mapi/junit.xml"
+    default: "/tmp/mapi/junit.xml"
   html-report:
     type: string
     description: HTML output path.
-    default: "${HOME}/mapi/report.html"
+    default: "/tmp/mapi/report.html"
   sarif-report:
     type: string
     description: SARIF (Static Analysis Results Interchange Format) report output path. Store the artifact using the `store_artifacts` step.
