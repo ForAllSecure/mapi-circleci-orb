@@ -5,35 +5,49 @@
 
 
 
-A project template for Orbs.
+# Mayhem for API CircleCI Orb
 
-This repository is designed to be automatically ingested and modified by the CircleCI CLI's `orb init` command.
+[![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](http://mayhem4api.forallsecure.com/signup)
 
-_**Edit this area to include a custom title and description.**_
+A CircleCI orb for using Mayhem for API to check for reliability,
+performance and security issues in your APIs.
 
----
+## About Mayhem for API
 
-## Resources
+🧪 Modern App Testing: Mayhem for API is a dynamic testing tool that
+catches reliability, performance and security bugs before they hit
+production.
 
-[CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/forallsecure/mapi) - The official registry page of this orb for all versions, executors, commands, and jobs described.
+🧑‍💻 For Developers, by developers: The engineers building
+software are the best equipped to fix bugs, including security bugs. As
+engineers ourselves, we're building tools that we wish existed to make
+our job easier!
 
-[CircleCI Orb Docs](https://circleci.com/docs/2.0/orb-intro/#section=configuration) - Docs for using, creating, and publishing CircleCI Orbs.
+🤖 Simple to Automate in CI: Tests belong in CI, running on every commit
+and PRs. We make it easy, and provide results right in your PRs where
+you want them. Adding Mayhem for API to a DevOps pipeline is easy.
 
-### How to Contribute
+Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) today!
 
-We welcome [issues](https://github.com/ForAllSecure/mapi-circleci-orb/issues) to and [pull requests](https://github.com/ForAllSecure/mapi-circleci-orb/pulls) against this repository!
+## Usage
 
-### How to Publish An Update
-1. Merge pull requests with desired changes to the main branch.
-    - For the best experience, squash-and-merge and use [Conventional Commit Messages](https://conventionalcommits.org/).
-2. Find the current version of the orb.
-    - You can run `circleci orb info forallsecure/mapi | grep "Latest"` to see the current version.
-3. Create a [new Release](https://github.com/ForAllSecure/mapi-circleci-orb/releases/new) on GitHub.
-    - Click "Choose a tag" and _create_ a new [semantically versioned](http://semver.org/) tag. (ex: v1.0.0)
-      - We will have an opportunity to change this before we publish if needed after the next step.
-4.  Click _"+ Auto-generate release notes"_.
-    - This will create a summary of all of the merged pull requests since the previous release.
-    - If you have used _[Conventional Commit Messages](https://conventionalcommits.org/)_ it will be easy to determine what types of changes were made, allowing you to ensure the correct version tag is being published.
-5. Now ensure the version tag selected is semantically accurate based on the changes included.
-6. Click _"Publish Release"_.
-    - This will push a new tag and trigger your publishing pipeline on CircleCI.
+Add the `forallsecure/mapi` orb to your `.circleci/config.yml` and add the configured `mapi/scan` job to your workflow.
+
+```
+version: 2.1
+orbs:
+  mapi: forallsecure/mapi@1.0.0
+workflows:
+  security:
+    jobs:
+      - mapi/scan:
+          api-url: http://localhost:8000
+          api-spec: your-openapi-spec-or-postman-collection.json
+          sarif-report: "/tmp/mapi/report.sarif"
+          run-args: |
+            # Basic Auth
+            --basic-auth
+            login:password
+            # Treat all warnings as errors
+            --warnaserror
+```
