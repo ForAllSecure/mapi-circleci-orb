@@ -14,6 +14,7 @@ params=()
 [[ $ZAP_API_SCAN == 1 ]] && params+=(--zap)
 [[ -n $HTML_REPORT ]] && params+=("--html") && params+=("${HTML_REPORT}") && mkdir -p "$(dirname "$HTML_REPORT")"
 [[ -n $JUNIT_REPORT ]] && params+=("--junit") && params+=("${JUNIT_REPORT}") && mkdir -p "$(dirname "$JUNIT_REPORT")"
+[[ -n $SARIF_REPORT ]] && params+=("--sarif") && params+=("${SARIF_REPORT}") && mkdir -p "$(dirname "$SARIF_REPORT")"
 
 echo "${params[@]}"
 

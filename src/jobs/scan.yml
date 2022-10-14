@@ -40,12 +40,16 @@ parameters:
     default: ""
   junit-report:
     type: string
-    description: junit output path. Store the artifact using the `store_artifacts` step.
+    description: junit output path.
     default: "${HOME}/mapi/junit.xml"
   html-report:
     type: string
-    description: HTML output path. Store the artifact using the `store_artifacts` step.
+    description: HTML output path.
     default: "${HOME}/mapi/report.html"
+  sarif-report:
+    type: string
+    description: SARIF (Static Analysis Results Interchange Format) report output path. Store the artifact using the `store_artifacts` step.
+    default: ""
   # TODO: support run args
   # run-args:
   #   type: string
@@ -74,7 +78,19 @@ steps:
       mapi-version: <<parameters.mapi-version>>
       html-report: <<parameters.html-report>>
       junit-report: <<parameters.junit-report>>
-  - store_artifacts:
-      path: <<parameters.html-report>>
-  - store_artifacts:
-      path: <<parameters.junit-report>>
+      sarif-report: <<parameters.sarif-report>>
+  - when:
+      condition: <<parameters.html-report>>
+      steps:
+        - store_artifacts:
+            path: <<parameters.html-report>>
+  - when:
+      condition: <<parameters.junit-report>>
+      steps:
+        - store_test_results:
+            path: <<parameters.junit-report>>
+  - when:
+      condition: <<parameters.sarif-report>>
+      steps:
+        - store_artifacts:
+            path: <<parameters.sarif-report>>

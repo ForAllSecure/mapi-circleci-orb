@@ -25,12 +25,16 @@ parameters:
     default: "auto"
   junit-report:
     type: string
-    description: junit output path. Store the artifact using the `store_artifacts` step.
+    description: junit output path. Store the artifact using the `store_test_results` step.
     default: "${HOME}/mapi/junit.xml"
   html-report:
     type: string
     description: HTML output path. Store the artifact using the `store_artifacts` step.
     default: "${HOME}/mapi/report.html"
+  sarif-report:
+    type: string
+    description: SARIF (Static Analysis Results Interchange Format) report output path. Store the artifact using the `store_artifacts` step.
+    default: ""
   # TODO: rewrite + classify plgin
   # rewrite-plugin:
   #   type: string
