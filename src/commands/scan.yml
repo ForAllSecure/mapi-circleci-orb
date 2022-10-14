@@ -23,6 +23,10 @@ parameters:
     type: string
     description: Scan duration
     default: "auto"
+  junit-report:
+    type: string
+    description: junit output path. Store the artifact using the `store_artifacts` step.
+    default: "${HOME}/mapi/junit.xml"
   html-report:
     type: string
     description: HTML output path. Store the artifact using the `store_artifacts` step.
@@ -66,6 +70,7 @@ steps:
         DURATION: <<parameters.duration>>
         GITHUB_TOKEN_NAME: <<parameters.github-token>>
         HTML_REPORT: <<parameters.html-report>>
+        JUNIT_REPORT: <<parameters.junit-report>>
         MAPI_TOKEN_NAME: <<parameters.mapi-token>>
         MAPI_PATH: <<parameters.mapi-path>>
         MAPI_VERSION: <<parameters.mapi-version>>
