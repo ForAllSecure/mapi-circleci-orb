@@ -16,7 +16,8 @@ params=()
 [[ -n $JUNIT_REPORT ]] && params+=("--junit") && params+=("${JUNIT_REPORT}") && mkdir -p "$(dirname "$JUNIT_REPORT")"
 [[ -n $SARIF_REPORT ]] && params+=("--sarif") && params+=("${SARIF_REPORT}") && mkdir -p "$(dirname "$SARIF_REPORT")"
 
-echo "${params[@]}"
+# Remove commented lines from run args & parameterize them
+[[ -n $RUN_ARGS ]] && RUN_ARGS=$(sed '/^#/d' <<<"${RUN_ARGS}") && readarray -t run_args <<<"${RUN_ARGS}"
 
 # Create binary folder
 mkdir -p "${MAPI_PATH}"
@@ -25,4 +26,4 @@ mkdir -p "${MAPI_PATH}"
 curl -Lo "${MAPI}" "https://mayhem4api.forallsecure.com/downloads/cli/${MAPI_VERSION}/linux-musl/mapi" \
   && chmod +x "${MAPI}"
 
-${MAPI} run --url "${API_URL}" "${TARGET}" "${DURATION}" "${API_SPEC}" "${params[@]}" 
+${MAPI} run --url "${API_URL}" "${TARGET}" "${DURATION}" "${API_SPEC}" "${params[@]}" "${run_args[@]}"

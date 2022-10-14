@@ -54,10 +54,6 @@ parameters:
     type: string
     description: A postman environment to use together with a postman collection.
     default: ""
-  # TODO: support run args
-  # run-args:
-  #   type: string
-  #   description: A list of additional arguments (separated by '\n') to include in the call to 'mapi run'. Run 'mapi run --help' for a complete list of arguments.
   mapi-path:
     type: string
     description: The path to install the latest binary executable to.
@@ -66,6 +62,10 @@ parameters:
     type: string
     description: The binary version of Mayhem for API to use
     default: "latest"
+  run-args:
+    type: string
+    description: A list of additional arguments (separated by '\n') to include in the call to 'mapi run'. Run 'mapi run --help' for a complete list of arguments.
+    default: ""
 steps:
   - run:
       environment:
@@ -80,6 +80,7 @@ steps:
         MAPI_VERSION: <<parameters.mapi-version>>
         POSTMAN_ENVIRONMENT: <<parameters.postman-environment-id>>
         POSTMAN_API_KEY_NAME: <<parameters.postman-api-key>>
+        RUN_ARGS: <<parameters.run-args>>
         SARIF_REPORT: <<parameters.sarif-report>>
         TARGET: <<parameters.target>>
         ZAP_API_SCAN: <<parameters.zap-api-scan>>

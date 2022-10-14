@@ -11,3 +11,10 @@ usage:
         - mapi/scan:
             api-url: http://localhost:8000
             api-spec: your-openapi-spec-or-postman-collection.json
+            sarif-report: "/tmp/mapi/report.sarif"
+            run-args: |
+              # Basic Auth
+              --basic-auth
+              login:password
+              # Treat all warnings as errors
+              --warnaserror

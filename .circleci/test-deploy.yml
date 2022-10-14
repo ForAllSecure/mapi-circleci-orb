@@ -21,6 +21,12 @@ jobs:
           api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
           duration: "10sec"
           sarif-report: "/tmp/mapi/report.sarif"
+          run-args: |
+            # Basic Auth
+            --basic-auth
+            login:password
+            # Treat all warnings as errors
+            --warnaserror
       - store_artifacts:
           path: /tmp/mapi
       - store_test_results:
