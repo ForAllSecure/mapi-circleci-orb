@@ -80,6 +80,7 @@ steps:
         MAPI_VERSION: <<parameters.mapi-version>>
         POSTMAN_ENVIRONMENT: <<parameters.postman-environment-id>>
         POSTMAN_API_KEY_NAME: <<parameters.postman-api-key>>
+        SARIF_REPORT: <<parameters.sarif-report>>
         TARGET: <<parameters.target>>
         ZAP_API_SCAN: <<parameters.zap-api-scan>>
 
