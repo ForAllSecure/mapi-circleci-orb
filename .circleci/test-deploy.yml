@@ -23,6 +23,8 @@ jobs:
           sarif-report: "/tmp/mapi/report.sarif"
       - store_artifacts:
           path: /tmp/mapi
+      - store_test_results:
+          path: /tmp/mapi/junit.xml
 workflows:
   test-deploy:
     jobs:
