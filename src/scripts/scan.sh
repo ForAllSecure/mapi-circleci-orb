@@ -26,4 +26,24 @@ mkdir -p "${MAPI_PATH}"
 curl -Lo "${MAPI}" "https://mayhem4api.forallsecure.com/downloads/cli/${MAPI_VERSION}/linux-musl/mapi" \
   && chmod +x "${MAPI}"
 
-${MAPI} run --url "${API_URL}" "${TARGET}" "${DURATION}" "${API_SPEC}" "${params[@]}" "${run_args[@]}"
+if [[ -n $MAPI_TESTING ]]; then
+  echo "MAPI_TESTING parameter was detected.  mapi will now fail if no issues are found."
+fi
+
+# don't fail if the subshell fails (we expect it to if MAPI_TESTING is set)
+set +e
+# redirect output to console as well as capture it to the out var
+exec 5>&1
+out=$(${MAPI} run --url "${API_URL}" "${TARGET}" "${DURATION}" "${API_SPEC}" "${params[@]}" "${run_args[@]}" 2>&1 | tee /dev/fd/5 )
+MAPI_EXIT_CODE=$?
+# restore failure if any command fails
+set -e
+
+echo "mapi exited with code ${MAPI_EXIT_CODE}"
+
+if [[ -n $MAPI_TESTING && $MAPI_EXIT_CODE == 1 && "$out" == *"Completed job"* ]]; then
+  echo "Expected issues found in test." && exit 0
+else
+  exit $MAPI_EXIT_CODE
+fi
+
