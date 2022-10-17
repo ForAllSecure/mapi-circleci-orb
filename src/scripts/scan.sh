@@ -31,12 +31,13 @@ if [[ -n $MAPI_TESTING ]]; then
 fi
 
 set +e
-out=$(${MAPI} run --url "${API_URL}" "${TARGET}" "${DURATION}" "${API_SPEC}" "${params[@]}" "${run_args[@]}" 2>&1)
+# redirect output to console as well as capture it to the out var
+exec 5>&1
+out=$(${MAPI} run --url "${API_URL}" "${TARGET}" "${DURATION}" "${API_SPEC}" "${params[@]}" "${run_args[@]}" 2>&1 | tee /dev/fd/5 )
 MAPI_EXIT_CODE=$?
 set -e
 
 echo "mapi exited with code ${MAPI_EXIT_CODE}"
-echo "${out}"
 
 if [[ -n $MAPI_TESTING && $MAPI_EXIT_CODE == 1 && "$out" == *"Completed job"* ]]; then
   echo "Expected issues found in test." && exit 0
