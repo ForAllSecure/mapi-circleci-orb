@@ -23,7 +23,7 @@ params=()
 mkdir -p "${MAPI_PATH}"
 
 # Download binary
-curl -Lo "${MAPI}" "https://mayhem4api.forallsecure.com/downloads/cli/${MAPI_VERSION}/linux-musl/mapi" \
+curl -Lo "${MAPI}" "https://app.mayhem.security/cli/mapi/linux-musl/latest/mapi" \
   && chmod +x "${MAPI}"
 
 if [[ -n $MAPI_TESTING ]]; then
