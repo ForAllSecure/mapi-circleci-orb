@@ -1,24 +1,19 @@
-version: 2.1
+version: 2.2
 
 description: >
   Probe your REST API with an infinite stream of test cases generated automatically from your OpenAPI specification or Postman collection.
 
   Get a Mayhem for API token
 
-  1. [Sign up for Mayhem for API for free and install `mapi`](http://mayhem4api.forallsecure.com/signup)
+  1. [Sign up for Mayhem for API for free and install `mapi`](https://www.mayhem.security/get-started)
 
-  2. Create a [service account token](https://mayhem4api.forallsecure.com/docs/ch01-03-organizations.html#service-accounts)
-      using the Mayhem for API CLI
+  2. Create an [API Token](https://app.mayhem.security/-/settings/user/api-tokens)
 
-    ```
-      mapi organization service-account create <your-org> <service-account-name>
-    ```
-
-  3. Add your service account token with name `MAPI_TOKEN` to your Circle CI project's Environment Variables.
+  3. Add the new API Token, with name `MAPI_TOKEN`, to your Circle CI project's Environment Variables.
 
 # This information will be displayed in the orb registry and is not mandatory.
 display:
-  home_url: "https://forallsecure.com/mayhem-for-api"
+  home_url: "https://mayhem.security"
   source_url: "https://github.com/ForAllSecure/mapi-circleci-orb"
 
 # If your orb requires other orbs, you can import them like this. Otherwise remove the "orbs" stanza.
