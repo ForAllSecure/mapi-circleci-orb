@@ -34,7 +34,7 @@ Want to try it? [Sign up for free](https://www.mayhem.security/get-started) toda
 Add the `forallsecure/mapi` orb to your `.circleci/config.yml` and add the configured `mapi/scan` job to your workflow.
 
 ```
-version: 2.2
+version: 2.1
 orbs:
   mapi: forallsecure/mapi@1.0.0
 workflows:

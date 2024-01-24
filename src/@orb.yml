@@ -1,4 +1,4 @@
-version: 2.2
+version: 2.1
 
 description: >
   Probe your REST API with an infinite stream of test cases generated automatically from your OpenAPI specification or Postman collection.

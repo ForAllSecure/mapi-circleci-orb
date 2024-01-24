@@ -1,4 +1,4 @@
-version: 2.2
+version: 2.1
 orbs:
   mapi: forallsecure/mapi@dev:<<pipeline.git.revision>>
   orb-tools: circleci/orb-tools@11.1
