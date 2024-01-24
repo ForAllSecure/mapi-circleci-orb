@@ -2,7 +2,7 @@ description: >
   Run Mayhem for API to check for vulnerabilities.
 
 usage:
-  version: 2.1
+  version: 2.2
   orbs:
     mapi: forallsecure/mapi@1.0.0
   workflows:
