@@ -17,8 +17,8 @@ jobs:
       - checkout
       # Run your orb's commands to validate them.
       - mapi/scan:
-          api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
-          api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
+          api-url: "https://demo-api.mayhem.security/api/v3"
+          api-spec: "https://demo-api.mayhem.security/api/v3/openapi.json"
           target: "forallsecure/integrations/mapi-circleci-orb"
           duration: "10sec"
           sarif-report: "/tmp/mapi/report.sarif"
@@ -42,8 +42,8 @@ workflows:
       # test mapi scan job
       - mapi/scan:
           context: orb-publishing
-          api-url: "https://demo-api.mayhem4api.forallsecure.com/api/v3"
-          api-spec: "https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json"
+          api-url: "https://demo-api.mayhem.security/api/v3"
+          api-spec: "https://demo-api.mayhem.security/api/v3/openapi.json"
           target: "forallsecure/integrations/mapi-circleci-orb"
           duration: "10sec"
           zap-api-scan: true

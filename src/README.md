@@ -1,6 +1,6 @@
 # Mayhem for API CircleCI Orb
 
-[![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](http://mayhem4api.forallsecure.com/signup)
+[![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](https://www.mayhem.security/get-started)
 
 A CircleCI orb for using Mayhem for API to check for reliability,
 performance and security issues in your APIs.
@@ -20,4 +20,4 @@ our job easier!
 and PRs. We make it easy, and provide results right in your PRs where
 you want them. Adding Mayhem for API to a DevOps pipeline is easy.
 
-Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) today!
+Want to try it? [Sign up for free](https://www.mayhem.security/get-started) today!
