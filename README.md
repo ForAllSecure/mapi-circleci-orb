@@ -36,7 +36,7 @@ Add the `forallsecure/mapi` orb to your `.circleci/config.yml` and add the confi
 ```
 version: 2.1
 orbs:
-  mapi: forallsecure/mapi@1.0.0
+  mapi: forallsecure/mapi@1.1.0
 workflows:
   security:
     jobs:
