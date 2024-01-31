@@ -43,7 +43,7 @@ echo "mapi exited with code ${MAPI_EXIT_CODE}"
 
 if [[ -n $MAPI_TESTING && $MAPI_EXIT_CODE == 1 && "$out" == *"Completed job"* ]]; then
   echo "Expected issues found in test." && exit 0
-elif [[ $MAPI_EXIT_CODE != 0 && -n $IGNORE_EXIT_CODE ]]; then
+elif [[ $MAPI_EXIT_CODE != 0 && $IGNORE_EXIT_CODE == 1 ]]; then
   echo "Ignoring non-zero exit code returned by mapi." && exit 0
 else
   exit $MAPI_EXIT_CODE
